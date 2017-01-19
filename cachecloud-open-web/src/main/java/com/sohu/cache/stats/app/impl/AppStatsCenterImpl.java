@@ -301,7 +301,8 @@ public class AppStatsCenterImpl implements AppStatsCenter {
                 hits += instanceStats.getHits();
                 miss += instanceStats.getMisses();
                 if (isMaster) {
-                    resultVO.setMem(resultVO.getMem() + instanceInfo.getMem());
+                   //界面计算是根据mb 来计算的。而原生的单位是byte,因此需要做个转换
+                    resultVO.setMem(resultVO.getMem() + (instanceStats.getMaxMemory()/ 1024 / 1024));
                     resultVO.setCurrentMem(resultVO.getCurrentMem() + usedMemoryMB);
                     resultVO.setCurrentObjNum(resultVO.getCurrentObjNum() + instanceStats.getCurrItems());
                     resultVO.setMasterNum(resultVO.getMasterNum() + 1);
